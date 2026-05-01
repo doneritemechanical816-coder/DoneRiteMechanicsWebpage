@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DoneRite Mechanics — Professional HVAC Services</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-container">
+      <div class="logo">🔧 DoneRite Mechanics</div>
+      <div class="nav-links">
+        <button class="tab-btn" onclick="switchTab('welcome')">Welcome</button>
+        <button class="tab-btn" onclick="switchTab('services')">Services</button>
+        <button class="tab-btn" onclick="switchTab('gallery')">Gallery</button>
+        <button class="tab-btn" onclick="switchTab('contact')">Contact</button>
+        <button id="auth-btn" class="auth-btn" onclick="loginGoogle()">Sign In</button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Auth Modal -->
+  <div id="auth-modal" class="modal">
+    <div class="modal-content">
+      <span class="close" onclick="closeAuthModal()">&times;</span>
+      <h2>Welcome to DoneRite Mechanics</h2>
+      <p>Sign in with your Google account to schedule appointments.</p>
+      <button class="google-btn" onclick="loginGoogle()">
+        <img src="https://www.gstatic.com/images/branding/product/1x/googleg_standard_color_128dp.png" alt="Google">
+        Sign in with Google
+      </button>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="container">
+    <!-- Welcome Tab -->
+    <div id="tab-welcome" class="tab-content active">
+      <div class="hero">
+        <h1>Welcome to DoneRite Mechanics</h1>
+        <p class="subtitle">Your trusted partner for professional heating, cooling, and mechanical services</p>
+        <button class="cta-btn" onclick="switchTab('services')">View Our Services</button>
+      </div>
+      <div class="about-section">
+        <div class="about-text">
+          <h2>About DoneRite Mechanics</h2>
+          <p>For over 15 years, DoneRite Mechanics has been serving the community with top-notch HVAC and mechanical services. Our team of certified technicians is committed to providing reliable, efficient, and affordable solutions for your home and business needs.</p>
+          <p><strong>📍 Location:</strong> 123 Main Street, Anytown, USA</p>
+          <p><strong>📞 Phone:</strong> (555) 123-4567</p>
+          <p><strong>⏰ Hours:</strong> Monday - Friday: 8:00 AM - 6:00 PM | Saturday: 9:00 AM - 2:00 PM</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Services & Scheduling Tab -->
+    <div id="tab-services" class="tab-content">
+      <h2>Our Services & Schedule an Appointment</h2>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>❄️ Air Conditioning</h3>
+          <p>Installation, repair, and maintenance of AC systems</p>
+          <span class="price">From $150</span>
+        </div>
+        <div class="service-card">
+          <h3>🔥 Heating Systems</h3>
+          <p>Furnace repair, installation, and seasonal maintenance</p>
+          <span class="price">From $200</span>
+        </div>
+        <div class="service-card">
+          <h3>🌬️ Indoor Air Quality</h3>
+          <p>Air purifiers, humidifiers, and ventilation upgrades</p>
+          <span class="price">From $100</span>
+        </div>
+        <div class="service-card">
+          <h3>🔧 Emergency Service</h3>
+          <p>24/7 emergency repairs for urgent issues</p>
+          <span class="price">From $300</span>
+        </div>
+      </div>
+
+      <div class="appointment-section">
+        <h3>Schedule Your Appointment</h3>
+        <form id="appointment-form" onsubmit="submitAppointment(event)">
+          <input type="text" placeholder="Your Name" id="apt-name" required>
+          <input type="email" placeholder="Your Email" id="apt-email" required>
+          <input type="tel" placeholder="Your Phone" id="apt-phone" required>
+          <select id="apt-service" required>
+            <option value="">Select a Service</option>
+            <option value="Air Conditioning">Air Conditioning</option>
+            <option value="Heating Systems">Heating Systems</option>
+            <option value="Indoor Air Quality">Indoor Air Quality</option>
+            <option value="Emergency Service">Emergency Service</option>
+          </select>
+          <input type="date" id="apt-date" required>
+          <select id="apt-time" required>
+            <option value="">Select Time Slot</option>
+            <option value="8:00 AM - 10:00 AM">8:00 AM - 10:00 AM</option>
+            <option value="10:00 AM - 12:00 PM">10:00 AM - 12:00 PM</option>
+            <option value="1:00 PM - 3:00 PM">1:00 PM - 3:00 PM</option>
+            <option value="3:00 PM - 5:00 PM">3:00 PM - 5:00 PM</option>
+          </select>
+          <button type="submit" class="submit-btn">Schedule Appointment</button>
+        </form>
+        <div id="appointment-status"></div>
+      </div>
+    </div>
+
+    <!-- Gallery Tab -->
+    <div id="tab-gallery" class="tab-content">
+      <h2>Our Work</h2>
+      <div class="gallery">
+        <div class="gallery-item" onclick="openImageWindow(this.src)">
+          <img src="https://picsum.photos/300/300?random=1" alt="HVAC Installation">
+          <p>Professional AC Installation</p>
+        </div>
+        <div class="gallery-item" onclick="openImageWindow(this.src)">
+          <img src="https://picsum.photos/300/300?random=2" alt="Furnace Repair">
+          <p>Furnace Maintenance</p>
+        </div>
+        <div class="gallery-item" onclick="openImageWindow(this.src)">
+          <img src="https://picsum.photos/300/300?random=3" alt="Ductwork">
+          <p>Ductwork Installation</p>
+        </div>
+        <div class="gallery-item" onclick="openImageWindow(this.src)">
+          <img src="https://picsum.photos/300/300?random=4" alt="Team Photo">
+          <p>Our Certified Team</p>
+        </div>
+        <div class="gallery-item" onclick="openImageWindow(this.src)">
+          <img src="https://picsum.photos/300/300?random=5" alt="Commercial Work">
+          <p>Commercial Services</p>
+        </div>
+        <div class="gallery-item" onclick="openImageWindow(this.src)">
+          <img src="https://picsum.photos/300/300?random=6" alt="Customer Service">
+          <p>Customer Satisfaction</p>
+        </div>
+      </div>
+
+      <!-- Image Window -->
+      <div id="image-window" class="image-window">
+        <span class="close" onclick="closeImageWindow()">&times;</span>
+        <img id="enlarged-image" src="" alt="Enlarged">
+      </div>
+    </div>
+
+    <!-- Contact Tab -->
+    <div id="tab-contact" class="tab-content">
+      <h2>Get in Touch</h2>
+      <div class="contact-info">
+        <div class="contact-block">
+          <h3>📞 Phone</h3>
+          <p><a href="tel:+15551234567">(555) 123-4567</a></p>
+        </div>
+        <div class="contact-block">
+          <h3>📧 Email</h3>
+          <p><a href="mailto:service@doneritemechanics.com">service@doneritemechanics.com</a></p>
+        </div>
+        <div class="contact-block">
+          <h3>📍 Address</h3>
+          <p>123 Main Street<br>Anytown, USA 12345</p>
+        </div>
+        <div class="contact-block">
+          <h3>⏰ Business Hours</h3>
+          <p>Mon - Fri: 8:00 AM - 6:00 PM<br>Sat: 9:00 AM - 2:00 PM<br>Sun: Closed</p>
+        </div>
+      </div>
+      <form class="contact-form" onsubmit="submitContact(event)">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+        <textarea placeholder="Your Message" rows="5" required></textarea>
+        <button type="submit" class="submit-btn">Send Message</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 DoneRite Mechanics. All rights reserved. Licensed • Insured • Certified</p>
+  </footer>
+
+  <script src="/script.js"></script>
+</body>
+</html>
